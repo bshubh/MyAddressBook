@@ -6,5 +6,4 @@
 MyAddressBook
 
 Academic project.
-The intention of this project is to learn vCard. 
-Currently this project implements a 
+The intention of this project is to learn vCard bsaic version 2.1 
