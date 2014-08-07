@@ -1,4 +1,9 @@
-MyAddressBook
-=============
+!!
+!! WARNING: This repository is for teaching purposes ONLY.
+!! The software in this repository is COMPLETELY UNSUPPORTED.
+!!
 
-Small application, academics purpose, in order to learn the vCard 2.1.
+MyAddressBook
+
+Academic project.
+The intention of this project is to learn vCard bsaic version 2.1 
