@@ -9,9 +9,13 @@ package addressbook.visitors;
  */
 public interface IVisitor
 {
-	void visit(vCardAcceptor acceptor);
+	void atBegining(BeginnerAcceptor acceptor);
 	
-	void visit(NameVisitable nameVisitable);
+	void atName(NameVisitable nameVisitable);
 	
-	void visit(IVisitable visitable);
+	void atOrganization(OrganizationVisitable orgVisitable);
+	
+	void atWorkTelephone(WorkTelephoneVisitable workTelVisitable);
+	
+	void atHomeTelephone(HomeTelephoneVisitable homeTelVisitable);
 }

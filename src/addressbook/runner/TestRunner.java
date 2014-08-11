@@ -5,11 +5,11 @@ package addressbook.runner;
 
 import java.util.List;
 
+import addressbook.contextobject.CardContextDataObject;
 import addressbook.vcardprocessor.CardProcessorVersion2;
 import addressbook.vcardprocessor.CardProcessorVersion3;
 import addressbook.vcardprocessor.CardProcessorVersion4;
 import addressbook.vcardprocessor.IvCardProcessor;
-import addressbook.vcardprocessor.RawCardData;
 import addressbook.vcardreader.ICardReader;
 import addressbook.vcardreader.vCardReader;
 
@@ -27,19 +27,18 @@ public class TestRunner
 	{
 		try
 		{
-			final IvCardProcessor version2Processor = new CardProcessorVersion2();
-			final IvCardProcessor version3Processor = new CardProcessorVersion3();
-			final IvCardProcessor version4Processor = new CardProcessorVersion4();
+			final IvCardProcessor version4Processor = new CardProcessorVersion4(); // last processor, as of now. 
+			final IvCardProcessor version3Processor = new CardProcessorVersion3(version4Processor); // last processor, as of now. 
+			final IvCardProcessor version2Processor = new CardProcessorVersion2(version3Processor); // last processor, as of now.
+			
 			
 			final ICardReader reader = new vCardReader("PIM00005.vcf");
-			final List<RawCardData> cardDataList = reader.readCardData();
+			final List<CardContextDataObject> cardDataList = reader.readCardData();
 			
-			for (RawCardData rawCardData : cardDataList)
+			for (CardContextDataObject rawCardData : cardDataList)
 			{
-				version2Processor.forwardToNextLevel(version3Processor);
-				version2Processor.process(rawCardData);
-				version3Processor.forwardToNextLevel(version4Processor);
-				version3Processor.process(rawCardData);
+				version2Processor.parseCardData(rawCardData);
+				
 			}
 		}
 		catch(Exception e)

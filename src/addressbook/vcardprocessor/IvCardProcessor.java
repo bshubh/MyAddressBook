@@ -3,12 +3,14 @@
  */
 package addressbook.vcardprocessor;
 
+import addressbook.contextobject.CardContextDataObject;
+
 /**
  * This interface will define the contract for creating card processor.
  * 
- * At first, the version of the {@link RawCardData} will checked.
+ * At first, the version of the {@link CardContextDataObject} will checked.
  * if a processor is in the chain then it will be forwarded to the corresponding processor.
- * Corresponding processor will be responsible for further processing the data from the {@link RawCardData}.
+ * Corresponding processor will be responsible for further processing the data from the {@link CardContextDataObject}.
  * 
  * 
  * @author Shubhashish Bhowmik
@@ -16,17 +18,11 @@ package addressbook.vcardprocessor;
  */
 public interface IvCardProcessor
 {
-	/**
-	 * This method will forward the call to the next in chain processor.
-	 * @param nextInChain
-	 */
-	void forwardToNextLevel(IvCardProcessor nextInChain);
-	
 	
 	/**
 	 * This method will be responsible for processing the data further. 
 	 * 
 	 * @param data
 	 */
-	void process(RawCardData data);
+	void parseCardData(CardContextDataObject data);
 }

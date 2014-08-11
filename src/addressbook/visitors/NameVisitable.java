@@ -3,7 +3,8 @@
  */
 package addressbook.visitors;
 
-import addressbook.vcardprocessor.RawCardData;
+import addressbook.contextobject.CardContextDataObject;
+import addressbook.contextobject.vCardDataBean;
 
 /**
  * @author Shubhashish Bhowmik
@@ -12,12 +13,12 @@ import addressbook.vcardprocessor.RawCardData;
 public class NameVisitable implements IVisitable
 {
 
-	private final RawCardData rawCardData;
+	private final CardContextDataObject rawCardData;
 	
 	/**
 	 * @param rawCardData
 	 */
-	public NameVisitable(RawCardData rawCardData)
+	public NameVisitable(CardContextDataObject rawCardData)
 	{
 		this.rawCardData = rawCardData;
 	}
@@ -26,7 +27,7 @@ public class NameVisitable implements IVisitable
 	/**
 	 * @return the rawCardData
 	 */
-	public RawCardData getRawCardData()
+	public CardContextDataObject getRawCardData()
 	{
 		return rawCardData;
 	}
@@ -38,7 +39,31 @@ public class NameVisitable implements IVisitable
 	@Override
 	public void accept(IVisitor visitor)
 	{
-		visitor.visit(this);
+		visitor.atName(this);
 	}
 
+	/**
+	 * @param dataBean
+	 */
+	public void visitForName(final vCardDataBean dataBean)
+	{
+		final String newLine = new String("\\r");
+		final String[] tokens = rawCardData.getRawData().split(newLine);
+		
+		String firstName = "", lastname = "" , middlename = "";
+		for (String token : tokens) 
+		{
+			if(token.startsWith("N"))
+			{
+				firstName = token.substring(token.indexOf(";")+1);
+				lastname = token.substring(token.indexOf(":")+1,token.indexOf(";"));
+				//XXX:: Fix the middle name criteria.
+				//middlename = token.substring(token.indexOf(";")+1, token.lastIndexOf(";")-1);
+				break;
+			}
+		}
+		dataBean.setFirstName(firstName);
+		dataBean.setLastName(lastname);
+		dataBean.setMiddleName(middlename);
+	}
 }

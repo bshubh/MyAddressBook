@@ -3,8 +3,7 @@
  */
 package addressbook.visitors;
 
-import addressbook.vcardprocessor.RawCardData;
-import addressbook.vcardprocessor.vCardDataBean;
+import addressbook.contextobject.vCardDataBean;
 
 /**
  * @author Shubhashish Bhowmik
@@ -36,60 +35,40 @@ public class vCardVisitor implements IVisitor
 
 
 	@Override
-	public void visit(vCardAcceptor acceptor)
+	public void atBegining(BeginnerAcceptor acceptor)
 	{
-		//acceptor.accept(this);
-		RawCardData cardData = acceptor.getRawCardData();
-		if (cardData.isVersion2())
-		{
-			dataBean.setVersion("2.1");
-		}
-		else if (cardData.isVersion3())
-		{
-			dataBean.setVersion("3.0");
-		}
-		else if (cardData.isVersion4())
-		{
-			dataBean.setVersion("4.0");
-		}
-			
+		acceptor.visitForVersion(dataBean);
+	}
+
+
+	@Override
+	public void atName(NameVisitable nameVisitable) 
+	{
+		nameVisitable.visitForName(dataBean);
+	}
+
+
+	@Override
+	public void atOrganization(OrganizationVisitable orgVisitable) 
+	{
+		orgVisitable.visitForOrganization(dataBean);
+	}
+
+
+	@Override
+	public void atWorkTelephone(WorkTelephoneVisitable workTelVisitable)
+	{
+		workTelVisitable.visitForWorkTelephone(dataBean);
 		
 	}
 
 
 	@Override
-	public void visit(NameVisitable nameVisitable) 
+	public void atHomeTelephone(HomeTelephoneVisitable homeTelVisitable) 
 	{
-		nameVisitable.accept(this);
-		parseForNames(nameVisitable.getRawCardData());
-	}
-
-
-	@Override
-	public void visit(IVisitable visitable) 
-	{
+		homeTelVisitable.visitForHomeTelephone(dataBean);
 		
 	}
 
-	private void parseForNames(final RawCardData rawCardData)
-	{
-		final String[] tokens = rawCardData.getRawData().split("\\n");
-		
-		String firstName = "", lastname = "" , middlename = "";
-		for (String token : tokens) 
-		{
-			if(token.startsWith("N"))
-			{
-				firstName = token.substring(token.indexOf(":")+1,token.indexOf(";")-1);
-				lastname = token.substring(token.lastIndexOf(";"));
-				middlename = token.substring(token.indexOf(";")+1, token.lastIndexOf(";")-1);
-				break;
-			}
-		}
-		dataBean.setFirstName(firstName);
-		dataBean.setLastName(lastname);
-		dataBean.setMiddleName(middlename);
-		
-		
-	}
+	
 }

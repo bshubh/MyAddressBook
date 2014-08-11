@@ -10,7 +10,7 @@ import java.nio.channels.FileChannel;
 import java.util.LinkedList;
 import java.util.List;
 
-import addressbook.vcardprocessor.RawCardData;
+import addressbook.contextobject.CardContextDataObject;
 
 /**
  * This class is responsible for processing & reading the content from the vCard file.
@@ -38,9 +38,9 @@ public class vCardReader implements ICardReader
 	}
 	
 	/**
-	 * @return {@link LinkedList} representation of the {@link RawCardData}.
+	 * @return {@link LinkedList} representation of the {@link CardContextDataObject}.
 	 */
-	public List<RawCardData> readCardData() 
+	public List<CardContextDataObject> readCardData() 
 	{
 		FileInputStream inStream = null;
 		final StringBuilder strBuilder = new StringBuilder(ALLOCATE_CAPACITY);
@@ -86,12 +86,12 @@ public class vCardReader implements ICardReader
 	 * TODO:: Make this parsing event based.
 	 * 
 	 * @param rawdata as {@link String}.
-	 * @return {@link LinkedList} of {@link RawCardData}.
+	 * @return {@link LinkedList} of {@link CardContextDataObject}.
 	 */
-	private LinkedList<RawCardData> processData(String rawdata) 
+	private synchronized LinkedList<CardContextDataObject> processData(String rawdata) 
 	{
-		final LinkedList<RawCardData> cardDataList = new LinkedList<RawCardData>();
-		final StringBuilder rawData = new StringBuilder();
+		final LinkedList<CardContextDataObject> cardDataList = new LinkedList<CardContextDataObject>();
+		final StringBuilder rawDataBuilder = new StringBuilder();
 		
 		final String[] tokens = rawdata.split("\\n");
 		
@@ -103,7 +103,7 @@ public class vCardReader implements ICardReader
 			if (token.startsWith(vCardBEGIN))
 			{
 				startCard = true;
-				
+				rawDataBuilder.delete(0, rawDataBuilder.capacity());
 			}
 			else if(token.startsWith(vCardEND))
 			{
@@ -128,13 +128,13 @@ public class vCardReader implements ICardReader
 			}
 			else
 			{
-				rawData.append(token);
+				rawDataBuilder.append(token);
 			}
 			
 			if(endCard)
 			{
-				final RawCardData rawCardData = RawCardData.createRawCardData();
-				rawCardData.setRawData(rawData.toString());
+				final CardContextDataObject rawCardData = CardContextDataObject.createCardContextData();
+				rawCardData.setRawData(rawDataBuilder.toString());
 				rawCardData.setVersion2(version2);
 				rawCardData.setVersion3(version3);
 				rawCardData.setVersion4(version4);

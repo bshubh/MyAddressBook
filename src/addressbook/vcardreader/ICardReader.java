@@ -5,7 +5,7 @@ package addressbook.vcardreader;
 
 import java.util.List;
 
-import addressbook.vcardprocessor.RawCardData;
+import addressbook.contextobject.CardContextDataObject;
 
 /**
  * @author Shubhashish Bhowmik
@@ -13,5 +13,5 @@ import addressbook.vcardprocessor.RawCardData;
  */
 public interface ICardReader 
 {
-	List<RawCardData> readCardData();
+	List<CardContextDataObject> readCardData();
 }

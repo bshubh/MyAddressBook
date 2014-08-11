@@ -9,5 +9,8 @@ package addressbook.visitors;
  */
 public interface IVisitable
 {
+	/**
+	 * @param visitor
+	 */
 	void accept(IVisitor visitor);
 }

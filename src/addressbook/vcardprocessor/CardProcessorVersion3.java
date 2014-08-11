@@ -3,32 +3,31 @@
  */
 package addressbook.vcardprocessor;
 
+import addressbook.contextobject.CardContextDataObject;
+
 /**
  * @author Shubhashish Bhowmik
  *
  */
-public class CardProcessorVersion3 implements IvCardProcessor
+public class CardProcessorVersion3 extends AbstractCardProcessor
 {
 
-	private IvCardProcessor nextProcessor;
-	
-	
 
-	/* (non-Javadoc)
-	 * @see com.addressbook.vcardprocessor.IvCardProcessor#forwardToNextLevel(com.addressbook.vcardprocessor.IvCardProcessor)
+	/**
+	 * @param nextProcessor
 	 */
-	@Override
-	public void forwardToNextLevel(IvCardProcessor nextInChain) 
+	public CardProcessorVersion3(IvCardProcessor nextProcessor) 
 	{
-		this.nextProcessor = nextInChain;
-
+		super(nextProcessor);
 	}
+
+
 
 	/* (non-Javadoc)
 	 * @see com.addressbook.vcardprocessor.IvCardProcessor#process(java.lang.String)
 	 */
 	@Override
-	public void process(RawCardData data)
+	public void parseCardData(CardContextDataObject data)
 	{
 		if(data.isVersion3())
 		{
@@ -36,7 +35,10 @@ public class CardProcessorVersion3 implements IvCardProcessor
 		}
 		else
 		{
-			nextProcessor.process(data);
+			if(getNextInChain() != null)
+			{
+				getNextInChain().parseCardData(data);
+			}
 		}
 
 	}
