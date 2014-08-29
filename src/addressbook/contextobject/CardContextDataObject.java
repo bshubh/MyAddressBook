@@ -30,7 +30,11 @@ public class CardContextDataObject implements ICardContextObject
 	/** {@link Map} for holding the values of the card data.*/
 	private final Map<MemberEnum, String> paramMap = new EnumMap<MemberEnum, String>(MemberEnum.class);
 	
+	
+	/** Raw {@link String} data after reading from the vCard.*/
 	private String rawData;
+	
+	private vCardDataBean dataBean;
 	
 	/**
 	 * Static factory for the class.
@@ -112,6 +116,24 @@ public class CardContextDataObject implements ICardContextObject
 	{
 		this.rawData = rawData;
 	}
+
+	/**
+	 * @return the dataBean
+	 */
+	public vCardDataBean getDataBean() 
+	{
+		return dataBean;
+	}
+
+	/**
+	 * @param dataBean the dataBean to set
+	 */
+	public void setDataBean(vCardDataBean dataBean)
+	{
+		this.dataBean = dataBean;
+	}
+
+	
 	
 	
 }

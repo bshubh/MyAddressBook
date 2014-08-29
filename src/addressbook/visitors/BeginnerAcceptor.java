@@ -47,6 +47,7 @@ public class BeginnerAcceptor implements IVisitable
 	 */
 	public void visitForVersion(final vCardDataBean dataBean)
 	{
+		dataBean.setStartvCard(true);
 		if (rawCardData.isVersion2())
 		{
 			dataBean.setVersion("2.1");

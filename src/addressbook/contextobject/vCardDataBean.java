@@ -28,6 +28,9 @@ public class vCardDataBean implements Serializable
 	private String title;
 	private String workTelephoneNr;
 	private String homeTelephoneNr;
+	private String workAddress;
+	private String homeAddress;
+	private String emailAddress;
 	
 	/**
 	 * Default constructor
@@ -226,6 +229,58 @@ public class vCardDataBean implements Serializable
 		this.homeTelephoneNr = homeTelephoneNr;
 	}
 
+	
+	
+	/**
+	 * @return the workAddress
+	 */
+	public String getWorkAddress() 
+	{
+		return workAddress;
+	}
+
+	/**
+	 * @param workAddress the workAddress to set
+	 */
+	public void setWorkAddress(String workAddress)
+	{
+		this.workAddress = workAddress;
+	}
+
+	/**
+	 * @return the homeAddress
+	 */
+	public String getHomeAddress()
+	{
+		return homeAddress;
+	}
+
+	/**
+	 * @param homeAddress the homeAddress to set
+	 */
+	public void setHomeAddress(String homeAddress) 
+	{
+		this.homeAddress = homeAddress;
+	}
+	
+	
+
+	/**
+	 * @return the emailAddress
+	 */
+	public String getEmailAddress()
+	{
+		return emailAddress;
+	}
+
+	/**
+	 * @param emailAddress the emailAddress to set
+	 */
+	public void setEmailAddress(String emailAddress)
+	{
+		this.emailAddress = emailAddress;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -254,6 +309,12 @@ public class vCardDataBean implements Serializable
 		buildToString.append("TEL;WORK;VOICE:"+getWorkTelephoneNr());
 		buildToString.append("\n");
 		buildToString.append("TEL;HOME;VOICE:"+getHomeTelephoneNr());
+		buildToString.append("\n");
+		buildToString.append("ADR;WORK:"+getWorkAddress());
+		buildToString.append("\n");
+		buildToString.append("ADR;HOME:"+getHomeAddress());
+		buildToString.append("\n");
+		buildToString.append("EMAIL;PREF;INTERNET:"+getHomeAddress());
 		buildToString.append("\n");
 		buildToString.append("END:VCARD");
 		

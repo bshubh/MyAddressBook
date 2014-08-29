@@ -7,57 +7,50 @@ import addressbook.contextobject.CardContextDataObject;
 import addressbook.contextobject.vCardDataBean;
 
 /**
- * TODO : Make the arrangement of the multiple telephone numbers.
- * 
  * @author Shubhashish Bhowmik
  *
  */
-public class HomeTelephoneVisitable implements IVisitable
+public class HomeAddressVisitable implements IVisitable
 {
 	private final CardContextDataObject context;
-	
 	
 	
 	/**
 	 * @param context
 	 */
-	public HomeTelephoneVisitable(CardContextDataObject context) 
+	public HomeAddressVisitable(CardContextDataObject context) 
 	{
 		this.context = context;
 	}
-
 
 
 	/* (non-Javadoc)
 	 * @see addressbook.visitors.IVisitable#accept(addressbook.visitors.IVisitor)
 	 */
 	@Override
-	public void accept(IVisitor visitor) 
+	public void accept(IVisitor visitor)
 	{
-		visitor.atHomeTelephone(this);
+		visitor.atHomeAddress(this);
 
 	}
 
 
-	/**
-	 * @param {@link vCardDataBean}
-	 */
-	public void visitForHomeTelephone(vCardDataBean dataBean)
+	public void visitForHomeAddress(final vCardDataBean dataBean) 
 	{
 		final String newLine = new String("\\r");
 		final String[] tokens = context.getRawData().split(newLine);
 		
-		String telHome = "";
+		String homeAddress = "";
 		for (String token : tokens) 
 		{
-			if(token.startsWith("TEL;HOME;VOICE"))
+			if(token.startsWith("ADR;HOME"))
 			{
-				telHome = token.substring(token.indexOf(":")+1);
+				homeAddress = token.substring(token.indexOf(":")+1);
 				break;
 			}
 		}
 		
-		dataBean.setHomeTelephoneNr(telHome);
+		dataBean.setHomeAddress(homeAddress);
 	}
 
 }

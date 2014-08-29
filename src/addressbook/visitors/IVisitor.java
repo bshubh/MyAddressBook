@@ -18,4 +18,12 @@ public interface IVisitor
 	void atWorkTelephone(WorkTelephoneVisitable workTelVisitable);
 	
 	void atHomeTelephone(HomeTelephoneVisitable homeTelVisitable);
+	
+	void atOrganizationAddress(OrganizationAddressVisitable orgAddressVisitable);
+	
+	void atHomeAddress(HomeAddressVisitable homeAddressVisitable);
+	
+	void atEmailAddress(EmailAddressVisitable emailAddressVisitable);
+	
+	void atEnd(EndAcceptor endAcceptor);
 }

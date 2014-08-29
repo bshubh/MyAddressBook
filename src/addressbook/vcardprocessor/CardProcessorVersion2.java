@@ -4,10 +4,14 @@
 package addressbook.vcardprocessor;
 
 import addressbook.contextobject.CardContextDataObject;
+import addressbook.visitors.EndAcceptor;
+import addressbook.visitors.HomeAddressVisitable;
+import addressbook.visitors.HomeTelephoneVisitable;
 import addressbook.visitors.IVisitable;
 import addressbook.visitors.IVisitor;
 import addressbook.visitors.BeginnerAcceptor;
 import addressbook.visitors.NameVisitable;
+import addressbook.visitors.OrganizationAddressVisitable;
 import addressbook.visitors.OrganizationVisitable;
 import addressbook.visitors.WorkTelephoneVisitable;
 import addressbook.visitors.vCardVisitor;
@@ -49,19 +53,28 @@ public class CardProcessorVersion2 extends  AbstractCardProcessor
 	{
 		if(context.isVersion2())
 		{
-			final IVisitable cardAcceptor = new BeginnerAcceptor(context);
+			final IVisitable beginCardAcceptor = new BeginnerAcceptor(context);
 			final IVisitable nameAcceptor = new NameVisitable(context);
 			final IVisitable orgAcceptor = new OrganizationVisitable(context);
-			final IVisitable workTeleAccpetor = new WorkTelephoneVisitable(context);
+			final IVisitable workTeleAcceptor = new WorkTelephoneVisitable(context);
+			final IVisitable homeTeleAcceptor = new HomeTelephoneVisitable(context);
+			final IVisitable orgAddressAcceptor = new OrganizationAddressVisitable(context);
+			final IVisitable homeAddressAcceptor = new HomeAddressVisitable(context);
+			final IVisitable endCardAcceptor = new EndAcceptor(context);
+			
 			final IVisitor vCardVisitor = new vCardVisitor();
 			
-			cardAcceptor.accept(vCardVisitor); 
+			beginCardAcceptor.accept(vCardVisitor); 
 			nameAcceptor.accept(vCardVisitor);
 			orgAcceptor.accept(vCardVisitor);
-			workTeleAccpetor.accept(vCardVisitor);
+			workTeleAcceptor.accept(vCardVisitor);
+			homeTeleAcceptor.accept(vCardVisitor);
+			orgAddressAcceptor.accept(vCardVisitor);
+			homeAddressAcceptor.accept(vCardVisitor);
+			endCardAcceptor.accept(vCardVisitor);
 			
 			
-			System.out.println(((vCardVisitor)vCardVisitor).getDataBean());
+			System.out.println(context.getDataBean());
 		}
 		else
 		{

@@ -54,7 +54,7 @@ public class WorkTelephoneVisitable implements IVisitable
 		final String newLine = new String("\\r");
 		final String[] tokens = context.getRawData().split(newLine);
 		
-		String telWork = "", lastname = "" , middlename = "";
+		String telWork = "";
 		for (String token : tokens) 
 		{
 			if(token.startsWith("TEL;WORK"))

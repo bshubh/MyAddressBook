@@ -6,6 +6,8 @@ package addressbook.visitors;
 import addressbook.contextobject.vCardDataBean;
 
 /**
+ * Main visitor for visiting all the entries..
+ * 
  * @author Shubhashish Bhowmik
  *
  */
@@ -22,15 +24,6 @@ public class vCardVisitor implements IVisitor
 	public vCardVisitor()
 	{
 		this.dataBean = new vCardDataBean();
-	}
-
-	
-	/**
-	 * @return the dataBean
-	 */
-	public vCardDataBean getDataBean()
-	{
-		return dataBean;
 	}
 
 
@@ -67,6 +60,38 @@ public class vCardVisitor implements IVisitor
 	public void atHomeTelephone(HomeTelephoneVisitable homeTelVisitable) 
 	{
 		homeTelVisitable.visitForHomeTelephone(dataBean);
+		
+	}
+
+
+	@Override
+	public void atOrganizationAddress(OrganizationAddressVisitable orgAddressVisitable) 
+	{
+		orgAddressVisitable.visitForOrganizationalAddress(dataBean);
+		
+	}
+
+
+	@Override
+	public void atHomeAddress(HomeAddressVisitable homeAddressVisitable)
+	{
+		homeAddressVisitable.visitForHomeAddress(dataBean);
+		
+	}
+
+
+	@Override
+	public void atEmailAddress(EmailAddressVisitable emailAddressVisitable)
+	{
+		emailAddressVisitable.visitForEmailAddress(dataBean);
+		
+	}
+
+
+	@Override
+	public void atEnd(EndAcceptor endAcceptor)
+	{
+		endAcceptor.visitEnd(dataBean);
 		
 	}
 
