@@ -3,8 +3,8 @@
  */
 package addressbook.visitors;
 
-import addressbook.contextobject.CardContextDataObject;
-import addressbook.contextobject.vCardDataBean;
+import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.vCardDataBean;
 
 /**
  * TODO :: Make arrangement for multiple phone numbers. Currently it supports only one.
@@ -15,16 +15,16 @@ import addressbook.contextobject.vCardDataBean;
  */
 public class WorkTelephoneVisitable implements IVisitable 
 {
-	private final CardContextDataObject context;
+	private final CardContextImpl context;
 	
 	
 
 	/** 
 	 * Parameterize constructor.
 	 * 
-	 * @param {@link CardContextDataObject}.
+	 * @param {@link CardContextImpl}.
 	 */
-	public WorkTelephoneVisitable(CardContextDataObject context)
+	public WorkTelephoneVisitable(CardContextImpl context)
 	{
 		this.context = context;
 	}
@@ -32,7 +32,7 @@ public class WorkTelephoneVisitable implements IVisitable
 	/**
 	 * @return the context
 	 */
-	public CardContextDataObject getContext()
+	public CardContextImpl getContext()
 	{
 		return context;
 	}

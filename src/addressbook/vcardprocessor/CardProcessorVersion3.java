@@ -3,7 +3,7 @@
  */
 package addressbook.vcardprocessor;
 
-import addressbook.contextobject.CardContextDataObject;
+import addressbook.applicationbeans.CardContextImpl;
 
 /**
  * @author Shubhashish Bhowmik
@@ -27,7 +27,7 @@ public class CardProcessorVersion3 extends AbstractCardProcessor
 	 * @see com.addressbook.vcardprocessor.IvCardProcessor#process(java.lang.String)
 	 */
 	@Override
-	public void parseCardData(CardContextDataObject data)
+	public void parseCardData(CardContextImpl data)
 	{
 		if(data.isVersion3())
 		{

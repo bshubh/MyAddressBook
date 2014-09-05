@@ -3,8 +3,8 @@
  */
 package addressbook.visitors;
 
-import addressbook.contextobject.CardContextDataObject;
-import addressbook.contextobject.vCardDataBean;
+import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.vCardDataBean;
 
 /**
  * @author Shubhashish Bhowmik
@@ -12,13 +12,13 @@ import addressbook.contextobject.vCardDataBean;
  */
 public class BeginnerAcceptor implements IVisitable
 {
-	private final CardContextDataObject rawCardData;
+	private final CardContextImpl rawCardData;
 	
 	/**
 	 * @param nameVisitable
 	 * @param orgVisitable
 	 */
-	public BeginnerAcceptor(final CardContextDataObject rawCardData)
+	public BeginnerAcceptor(final CardContextImpl rawCardData)
 	{
 		this.rawCardData = rawCardData;
 	}
@@ -27,7 +27,7 @@ public class BeginnerAcceptor implements IVisitable
 	/**
 	 * @return the rawCardData
 	 */
-	public CardContextDataObject getRawCardData()
+	public CardContextImpl getRawCardData()
 	{
 		return rawCardData;
 	}
@@ -39,7 +39,7 @@ public class BeginnerAcceptor implements IVisitable
 	@Override
 	public void accept(IVisitor visitor)
 	{
-		visitor.atBegining(this);
+		visitor.atStart(this);
 	}
 
 	/**

@@ -9,7 +9,7 @@ package addressbook.visitors;
  */
 public interface IVisitor
 {
-	void atBegining(BeginnerAcceptor acceptor);
+	void atStart(BeginnerAcceptor acceptor);
 	
 	void atName(NameVisitable nameVisitable);
 	

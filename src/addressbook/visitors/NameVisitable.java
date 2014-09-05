@@ -3,8 +3,8 @@
  */
 package addressbook.visitors;
 
-import addressbook.contextobject.CardContextDataObject;
-import addressbook.contextobject.vCardDataBean;
+import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.vCardDataBean;
 
 /**
  * @author Shubhashish Bhowmik
@@ -13,12 +13,12 @@ import addressbook.contextobject.vCardDataBean;
 public class NameVisitable implements IVisitable
 {
 
-	private final CardContextDataObject rawCardData;
+	private final CardContextImpl rawCardData;
 	
 	/**
 	 * @param rawCardData
 	 */
-	public NameVisitable(CardContextDataObject rawCardData)
+	public NameVisitable(CardContextImpl rawCardData)
 	{
 		this.rawCardData = rawCardData;
 	}
@@ -27,7 +27,7 @@ public class NameVisitable implements IVisitable
 	/**
 	 * @return the rawCardData
 	 */
-	public CardContextDataObject getRawCardData()
+	public CardContextImpl getRawCardData()
 	{
 		return rawCardData;
 	}

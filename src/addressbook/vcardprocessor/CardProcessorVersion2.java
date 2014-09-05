@@ -3,7 +3,7 @@
  */
 package addressbook.vcardprocessor;
 
-import addressbook.contextobject.CardContextDataObject;
+import addressbook.applicationbeans.CardContextImpl;
 import addressbook.visitors.EndAcceptor;
 import addressbook.visitors.HomeAddressVisitable;
 import addressbook.visitors.HomeTelephoneVisitable;
@@ -49,7 +49,7 @@ public class CardProcessorVersion2 extends  AbstractCardProcessor
 	 * @see com.addressbook.vcardprocessor.IvCardProcessor#process(java.lang.String)
 	 */
 	@Override
-	public void parseCardData(final CardContextDataObject context)
+	public void parseCardData(final CardContextImpl context)
 	{
 		if(context.isVersion2())
 		{

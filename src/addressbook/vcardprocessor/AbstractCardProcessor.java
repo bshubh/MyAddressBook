@@ -6,7 +6,7 @@ package addressbook.vcardprocessor;
 import java.util.LinkedList;
 import java.util.List;
 
-import addressbook.contextobject.CardContextDataObject;
+import addressbook.applicationbeans.CardContextImpl;
 
 /**
  * @author Shubhashish Bhowmik
@@ -38,14 +38,6 @@ public abstract class AbstractCardProcessor implements IvCardProcessor
 	/* (non-Javadoc)
 	 * @see addressbook.vcardprocessor.IvCardProcessor#parseCardData(addressbook.vcardprocessor.RawCardData)
 	 */
-	public abstract void parseCardData(CardContextDataObject data); 
+	public abstract void parseCardData(CardContextImpl data); 
 
-	/**
-	 * 
-	 */
-	public static void createChainOfProcessor()
-	{
-		
-		
-	}
 }

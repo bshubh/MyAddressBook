@@ -3,8 +3,8 @@
  */
 package addressbook.visitors;
 
-import addressbook.contextobject.CardContextDataObject;
-import addressbook.contextobject.vCardDataBean;
+import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.vCardDataBean;
 
 /**
  * TODO : Make the arrangement of the multiple telephone numbers.
@@ -14,14 +14,14 @@ import addressbook.contextobject.vCardDataBean;
  */
 public class HomeTelephoneVisitable implements IVisitable
 {
-	private final CardContextDataObject context;
+	private final CardContextImpl context;
 	
 	
 	
 	/**
 	 * @param context
 	 */
-	public HomeTelephoneVisitable(CardContextDataObject context) 
+	public HomeTelephoneVisitable(CardContextImpl context) 
 	{
 		this.context = context;
 	}

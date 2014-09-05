@@ -3,8 +3,8 @@
  */
 package addressbook.visitors;
 
-import addressbook.contextobject.CardContextDataObject;
-import addressbook.contextobject.vCardDataBean;
+import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.vCardDataBean;
 
 /**
  * @author Shubhashish Bhowmik
@@ -13,13 +13,13 @@ import addressbook.contextobject.vCardDataBean;
 public class EndAcceptor implements IVisitable
 {
 
-	private final CardContextDataObject context;
+	private final CardContextImpl context;
 	
 	
 	/**
 	 * @param context
 	 */
-	public EndAcceptor(CardContextDataObject context) 
+	public EndAcceptor(CardContextImpl context) 
 	{
 		this.context = context;
 	}

@@ -10,7 +10,7 @@ import java.nio.channels.FileChannel;
 import java.util.LinkedList;
 import java.util.List;
 
-import addressbook.contextobject.CardContextDataObject;
+import addressbook.applicationbeans.CardContextImpl;
 
 /**
  * This class is responsible for processing & reading the content from the vCard file.
@@ -38,9 +38,9 @@ public class vCardReader implements ICardReader
 	}
 	
 	/**
-	 * @return {@link LinkedList} representation of the {@link CardContextDataObject}.
+	 * @return {@link LinkedList} representation of the {@link CardContextImpl}.
 	 */
-	public List<CardContextDataObject> readCardData() 
+	public List<CardContextImpl> readCardData() 
 	{
 		FileInputStream inStream = null;
 		final StringBuilder strBuilder = new StringBuilder(ALLOCATE_CAPACITY);
@@ -86,11 +86,11 @@ public class vCardReader implements ICardReader
 	 * TODO:: Make this parsing event based.
 	 * 
 	 * @param rawdata as {@link String}.
-	 * @return {@link LinkedList} of {@link CardContextDataObject}.
+	 * @return {@link LinkedList} of {@link CardContextImpl}.
 	 */
-	private synchronized LinkedList<CardContextDataObject> processData(String rawdata) 
+	private synchronized LinkedList<CardContextImpl> processData(String rawdata) 
 	{
-		final LinkedList<CardContextDataObject> cardDataList = new LinkedList<CardContextDataObject>();
+		final LinkedList<CardContextImpl> cardDataList = new LinkedList<CardContextImpl>();
 		final StringBuilder rawDataBuilder = new StringBuilder();
 		
 		final String[] tokens = rawdata.split("\\n");
@@ -133,7 +133,7 @@ public class vCardReader implements ICardReader
 			
 			if(endCard)
 			{
-				final CardContextDataObject rawCardData = CardContextDataObject.createCardContextData();
+				final CardContextImpl rawCardData = CardContextImpl.createCardContextData();
 				rawCardData.setRawData(rawDataBuilder.toString());
 				rawCardData.setVersion2(version2);
 				rawCardData.setVersion3(version3);

@@ -3,7 +3,7 @@
  */
 package addressbook.visitors;
 
-import addressbook.contextobject.vCardDataBean;
+import addressbook.applicationbeans.vCardDataBean;
 
 /**
  * Main visitor for visiting all the entries..
@@ -28,7 +28,7 @@ public class vCardVisitor implements IVisitor
 
 
 	@Override
-	public void atBegining(BeginnerAcceptor acceptor)
+	public void atStart(BeginnerAcceptor acceptor)
 	{
 		acceptor.visitForVersion(dataBean);
 	}
