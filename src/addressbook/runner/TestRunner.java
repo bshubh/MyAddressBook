@@ -5,7 +5,10 @@ package addressbook.runner;
 
 import java.util.List;
 
-import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.ICardContext;
+import addressbook.corebeans.Person;
+import addressbook.corebeans.service.IPersonService;
+import addressbook.corebeans.serviceimpl.PersonServiceImpl;
 import addressbook.vcardprocessor.CardProcessorVersion2;
 import addressbook.vcardprocessor.CardProcessorVersion3;
 import addressbook.vcardprocessor.CardProcessorVersion4;
@@ -33,16 +36,22 @@ public class TestRunner
 			
 			
 			final ICardReader reader = new vCardReader("PIM00005.vcf");
-			final List<CardContextImpl> cardDataList = reader.readCardData();
+			final List<ICardContext> cardDataList = reader.readCardData();
 			
 			
-			for (CardContextImpl rawCardData : cardDataList)
+			for (ICardContext cardContext : cardDataList)
 			{
-				version2Processor.parseCardData(rawCardData);
-				PersonCreator person = new PersonCreator(rawCardData);
-				System.out.println(person.get().toString());
+				version2Processor.parseCardData(cardContext);
+				//PersonCreator person = new PersonCreator(cardContext);
+				//System.out.println(person.get().toString());
+				IPersonService personService = new PersonServiceImpl();
+				Person person = personService.createPerson(cardContext);
+				personService.commit(person);
 			}
+			
+			
 		}
+			
 		catch(Exception e)
 		{
 			e.printStackTrace();

@@ -14,30 +14,32 @@ public class EmailAddress implements IEntity
    private static final long serialVersionUID = -5012955555610249462L;
 
    private final String emailAdress;
-   private boolean isDefault;
+   private final boolean isDefault;
    
    /**
     * @param emailAdress
     */
    public EmailAddress(String emailAdress)
    {
-      this.emailAdress = emailAdress;
+      this(emailAdress,false);
    }
 
-   /**
+	/**
+	 * @param emailAdress
+	 * @param isDefault
+	 */
+	public EmailAddress(String emailAdress, boolean isDefault) 
+	{
+		this.emailAdress = emailAdress;
+		this.isDefault = isDefault;
+	}
+
+/**
     * @return the isDefault
     */
    public boolean isDefault()
    {
       return isDefault;
-   }
-
-   /**
-    * @param isDefault the isDefault to set
-    */
-   public void setDefault(boolean isDefault)
-   {
-      this.isDefault = isDefault;
    }
 
    /**
@@ -48,5 +50,8 @@ public class EmailAddress implements IEntity
       return emailAdress;
    }
    
-   
+   public static EmailAddress createEmailAddress(String emailaddress , boolean isdefault)
+   {
+	   return new EmailAddress(emailaddress,isdefault);
+   }
 }

@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.ICardContext;
+import addressbook.applicationbeans.vCardVersion;
 
 /**
  * This class is responsible for processing & reading the content from the vCard file.
@@ -40,7 +42,7 @@ public class vCardReader implements ICardReader
 	/**
 	 * @return {@link LinkedList} representation of the {@link CardContextImpl}.
 	 */
-	public List<CardContextImpl> readCardData() 
+	public List<ICardContext> readCardData() 
 	{
 		FileInputStream inStream = null;
 		final StringBuilder strBuilder = new StringBuilder(ALLOCATE_CAPACITY);
@@ -86,11 +88,11 @@ public class vCardReader implements ICardReader
 	 * TODO:: Make this parsing event based.
 	 * 
 	 * @param rawdata as {@link String}.
-	 * @return {@link LinkedList} of {@link CardContextImpl}.
+	 * @return {@link LinkedList} of {@link ICardContext}.
 	 */
-	private synchronized LinkedList<CardContextImpl> processData(String rawdata) 
+	private synchronized LinkedList<ICardContext> processData(String rawdata) 
 	{
-		final LinkedList<CardContextImpl> cardDataList = new LinkedList<CardContextImpl>();
+		final LinkedList<ICardContext> cardDataList = new LinkedList<ICardContext>();
 		final StringBuilder rawDataBuilder = new StringBuilder();
 		
 		final String[] tokens = rawdata.split("\\n");
@@ -133,13 +135,11 @@ public class vCardReader implements ICardReader
 			
 			if(endCard)
 			{
-				final CardContextImpl rawCardData = CardContextImpl.createCardContextData();
-				rawCardData.setRawData(rawDataBuilder.toString());
-				rawCardData.setVersion2(version2);
-				rawCardData.setVersion3(version3);
-				rawCardData.setVersion4(version4);
+				final ICardContext cardContext = CardContextImpl.createCardContextData();
+				cardContext.setRawData(rawDataBuilder.toString());
+				cardContext.setCardVersion(getCardVersion(version2,version3,version4));
 				
-				cardDataList.add(rawCardData);
+				cardDataList.add(cardContext);
 				endCard = false;
 				startCard = false;
 				version2 = false;
@@ -152,5 +152,27 @@ public class vCardReader implements ICardReader
 		return cardDataList;
 		
 	}
-	
+
+	/**
+	 * @param version2
+	 * @param version3
+	 * @param version4
+	 * @return
+	 */
+	private vCardVersion getCardVersion(boolean version2, boolean version3,	boolean version4) 
+	{
+		if (version2)
+		{
+			return vCardVersion.v2_1;
+		}
+		if(version3)
+		{
+			return vCardVersion.v3_0;
+		}
+		if(version4)
+		{
+			return vCardVersion.v4_0;
+		}
+		return vCardVersion.UnDefined;	
+	}
 }

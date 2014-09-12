@@ -3,18 +3,19 @@
  */
 package addressbook.vcardprocessor;
 
-import addressbook.applicationbeans.CardContextImpl;
-import addressbook.visitors.EndAcceptor;
-import addressbook.visitors.HomeAddressVisitable;
-import addressbook.visitors.HomeTelephoneVisitable;
-import addressbook.visitors.IVisitable;
-import addressbook.visitors.IVisitor;
-import addressbook.visitors.BeginnerAcceptor;
-import addressbook.visitors.NameVisitable;
-import addressbook.visitors.OrganizationAddressVisitable;
-import addressbook.visitors.OrganizationVisitable;
-import addressbook.visitors.WorkTelephoneVisitable;
-import addressbook.visitors.vCardVisitor;
+import addressbook.applicationbeans.ICardContext;
+import addressbook.applicationbeans.vCardVersion;
+import addressbook.vcardprocessor.visitors.BeginnerAcceptor;
+import addressbook.vcardprocessor.visitors.EndAcceptor;
+import addressbook.vcardprocessor.visitors.HomeAddressAcceptor;
+import addressbook.vcardprocessor.visitors.HomeTelephoneAcceptor;
+import addressbook.vcardprocessor.visitors.ICardAcceptor;
+import addressbook.vcardprocessor.visitors.ICardVisitor;
+import addressbook.vcardprocessor.visitors.NameAcceptor;
+import addressbook.vcardprocessor.visitors.OrganizationAddressAcceptor;
+import addressbook.vcardprocessor.visitors.OrganizationAcceptor;
+import addressbook.vcardprocessor.visitors.WorkTelephoneAcceptor;
+import addressbook.vcardprocessor.visitors.vCardVisitor;
 
 /**
  * @author Shubhashish Bhowmik
@@ -35,43 +36,38 @@ public class CardProcessorVersion2 extends  AbstractCardProcessor
 		super(nextInChain);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.addressbook.vcardprocessor.IvCardProcessor#forwardToNextLevel(com.addressbook.vcardprocessor.IvCardProcessor)
-	 
-	@Override
-	public void nextVersionProcessor(IvCardProcessor nextInChain) 
-	{
-		this.nextProcessor = nextInChain;
-
-	}*/
 
 	/* (non-Javadoc)
 	 * @see com.addressbook.vcardprocessor.IvCardProcessor#process(java.lang.String)
 	 */
 	@Override
-	public void parseCardData(final CardContextImpl context)
+	public void parseCardData(final ICardContext context)
 	{
-		if(context.isVersion2())
+		//XXX :: Change this to switch statement
+		if(context.getVersion() == vCardVersion.v2_1)
 		{
-			final IVisitable beginCardAcceptor = new BeginnerAcceptor(context);
-			final IVisitable nameAcceptor = new NameVisitable(context);
-			final IVisitable orgAcceptor = new OrganizationVisitable(context);
-			final IVisitable workTeleAcceptor = new WorkTelephoneVisitable(context);
-			final IVisitable homeTeleAcceptor = new HomeTelephoneVisitable(context);
-			final IVisitable orgAddressAcceptor = new OrganizationAddressVisitable(context);
-			final IVisitable homeAddressAcceptor = new HomeAddressVisitable(context);
-			final IVisitable endCardAcceptor = new EndAcceptor(context);
+			//XXX :: Move all these visitors to the somewhere else.
+			final ICardAcceptor beginCardAcceptor = new BeginnerAcceptor(context);
 			
-			final IVisitor vCardVisitor = new vCardVisitor();
+			//XXX:: Remove them , as this has been transferred to the Beginner Acceptor class.
+			/*final ICardAcceptor nameAcceptor = new NameAcceptor(context);
+			final ICardAcceptor orgAcceptor = new OrganizationAcceptor(context);
+			final ICardAcceptor workTeleAcceptor = new WorkTelephoneAcceptor(context);
+			final ICardAcceptor homeTeleAcceptor = new HomeTelephoneAcceptor(context);
+			final ICardAcceptor orgAddressAcceptor = new OrganizationAddressAcceptor(context);
+			final ICardAcceptor homeAddressAcceptor = new HomeAddressAcceptor(context);
+			final ICardAcceptor endCardAcceptor = new EndAcceptor(context);*/
+			
+			final ICardVisitor vCardVisitor = new vCardVisitor(context);
 			
 			beginCardAcceptor.accept(vCardVisitor); 
-			nameAcceptor.accept(vCardVisitor);
+			/*nameAcceptor.accept(vCardVisitor);
 			orgAcceptor.accept(vCardVisitor);
 			workTeleAcceptor.accept(vCardVisitor);
 			homeTeleAcceptor.accept(vCardVisitor);
 			orgAddressAcceptor.accept(vCardVisitor);
 			homeAddressAcceptor.accept(vCardVisitor);
-			endCardAcceptor.accept(vCardVisitor);
+			endCardAcceptor.accept(vCardVisitor);*/
 			
 			
 			System.out.println(context.getDataBean());
@@ -85,5 +81,6 @@ public class CardProcessorVersion2 extends  AbstractCardProcessor
 		}
 
 	}
+
 
 }

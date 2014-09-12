@@ -3,7 +3,8 @@
  */
 package addressbook.vcardprocessor;
 
-import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.ICardContext;
+import addressbook.applicationbeans.vCardVersion;
 
 /**
  * @author Shubhashish Bhowmik
@@ -27,9 +28,9 @@ public class CardProcessorVersion3 extends AbstractCardProcessor
 	 * @see com.addressbook.vcardprocessor.IvCardProcessor#process(java.lang.String)
 	 */
 	@Override
-	public void parseCardData(CardContextImpl data)
+	public void parseCardData(ICardContext context)
 	{
-		if(data.isVersion3())
+		if(context.getVersion() == vCardVersion.v3_0)
 		{
 			// XXX :: deroute to the card data 3 processor.
 		}
@@ -37,7 +38,7 @@ public class CardProcessorVersion3 extends AbstractCardProcessor
 		{
 			if(getNextInChain() != null)
 			{
-				getNextInChain().parseCardData(data);
+				getNextInChain().parseCardData(context);
 			}
 		}
 

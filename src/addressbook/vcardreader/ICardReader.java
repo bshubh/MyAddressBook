@@ -5,7 +5,7 @@ package addressbook.vcardreader;
 
 import java.util.List;
 
-import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.ICardContext;
 
 /**
  * @author Shubhashish Bhowmik
@@ -13,5 +13,5 @@ import addressbook.applicationbeans.CardContextImpl;
  */
 public interface ICardReader 
 {
-	List<CardContextImpl> readCardData();
+	List<ICardContext> readCardData();
 }

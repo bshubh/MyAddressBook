@@ -16,7 +16,9 @@ public enum vCardVersion
 	v4_0("VERSION:4.0"),
 	jCard("[\"version\", {}, \"text\", \"4.0\"]"),
 	xCard("urn:ietf:params:xml:ns:vcard-4.0"),
-	hCard1_0("html");
+	hCard1_0("html"),
+	UnDefined("Undefined")
+	;
 	
 	private String versionName;
 	

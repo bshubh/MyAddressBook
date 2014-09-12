@@ -21,4 +21,18 @@ public interface ICardContext extends Serializable
 	 */
 	vCardVersion getVersion();
 	
+	/**
+	 * @param rawData
+	 */
+	void setRawData(String rawData);
+	
+	/**
+	 * @param cardVersion
+	 */
+	void setCardVersion(vCardVersion cardVersion);
+	
+	/**
+	 * @return
+	 */
+	String getRawData();
 }

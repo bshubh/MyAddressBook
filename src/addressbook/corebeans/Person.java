@@ -3,6 +3,8 @@
  */
 package addressbook.corebeans;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -22,7 +24,7 @@ public class Person implements IEntity
    
    private String displayName;
    private String nickName;
-   private List<EmailAddress> emailAddressList;
+   private final LinkedList<EmailAddress> emailAddressList = new LinkedList<EmailAddress>();
    
    /**
     * @param firstName
@@ -59,16 +61,24 @@ public class Person implements IEntity
     */
    public List<EmailAddress> getEmailAddressList()
    {
-      return emailAddressList;
+      return Collections.unmodifiableList(emailAddressList);
    }
 
-   /**
-    * @param emailAddressList the emailAddressList to set
-    */
-   public void setEmailAddressList(List<EmailAddress> emailAddressList)
-   {
-      this.emailAddressList = emailAddressList;
-   }
+	/**
+	 * @param emailAddress
+	 * @param isDefault
+	 */
+	public void setEmailAddressList(String emailAddress, boolean isDefault)
+	{
+		if (emailAddressList.isEmpty())
+		{
+			emailAddressList.add(EmailAddress.createEmailAddress(emailAddress,isDefault));
+		} 
+		else 
+		{
+			emailAddressList.addLast(EmailAddress.createEmailAddress(emailAddress, isDefault));
+		}
+	}
 
    /**
     * @return the firstName

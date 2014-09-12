@@ -4,6 +4,7 @@
 package addressbook.vcardprocessor;
 
 import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.ICardContext;
 
 /**
  * This interface will define the contract for creating card processor.
@@ -24,5 +25,5 @@ public interface IvCardProcessor
 	 * 
 	 * @param data
 	 */
-	void parseCardData(CardContextImpl data);
+	void parseCardData(ICardContext context);
 }

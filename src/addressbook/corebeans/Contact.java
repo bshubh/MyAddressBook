@@ -13,6 +13,7 @@ public class Contact implements IEntity
    /** Eclipse generated serialVersionUID */
    private static final long serialVersionUID = -5967939392206495125L;
 
+   private IUser user;
    private final Person person;
    private HomeAddress homeAddress;
    private BusinessAddress businessAddress;

@@ -3,7 +3,8 @@
  */
 package addressbook.vcardprocessor;
 
-import addressbook.applicationbeans.CardContextImpl;
+import addressbook.applicationbeans.ICardContext;
+import addressbook.applicationbeans.vCardVersion;
 
 /**
  * @author Shubhashish Bhowmik
@@ -13,34 +14,19 @@ public class CardProcessorVersion4 implements IvCardProcessor
 {
 
 	private IvCardProcessor nextProcessor;
-	
-	
-/*
-	 (non-Javadoc)
-	 * @see com.addressbook.vcardprocessor.IvCardProcessor#forwardToNextLevel(com.addressbook.vcardprocessor.IvCardProcessor)
-	 
-	@Override
-	public void nextVersionProcessor(IvCardProcessor nextInChain) 
-	{
-		this.nextProcessor = nextInChain;
 
-	}*/
 
-	/* (non-Javadoc)
-	 * @see com.addressbook.vcardprocessor.IvCardProcessor#process(java.lang.String)
-	 */
 	@Override
-	public void parseCardData(CardContextImpl data)
+	public void parseCardData(ICardContext context)
 	{
-		if(data.isVersion4())
+		if(context.getVersion() == vCardVersion.v4_0)
 		{
-			// XXX :: deroute to the card data 3 processor.
 		}
 		else
 		{
-			nextProcessor.parseCardData(data);
+			nextProcessor.parseCardData(context);
 		}
-
+		
 	}
 
 }

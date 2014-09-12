@@ -3,13 +3,12 @@
  */
 package addressbook.corebeans;
 
-import java.io.Serializable;
 
 /**
  * @author Shubhashish Bhowmik
  *
  */
-public abstract class AbstractGenericAddress implements Serializable
+public abstract class AbstractGenericAddress implements IEntity
 {
    
    /** Eclipse generated serialVersionUID */
