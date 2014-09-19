@@ -5,7 +5,6 @@ package addressbook.corebeans.serviceimpl;
 
 import addressbook.corebeans.Contact;
 import addressbook.corebeans.Person;
-import addressbook.corebeans.service.AbstractPersistanceService;
 import addressbook.corebeans.service.IContactService;
 
 /**
@@ -57,7 +56,7 @@ public class ContactServiceImpl extends AbstractPersistanceService<Contact> impl
 	@Override
 	public Contact createContact(Person person)
 	{
-		Contact contact = new Contact(person);
+		final Contact contact = new Contact(person);
 		
 		return contact;
 	}

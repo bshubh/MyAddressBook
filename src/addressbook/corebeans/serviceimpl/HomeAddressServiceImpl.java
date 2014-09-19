@@ -6,7 +6,6 @@ package addressbook.corebeans.serviceimpl;
 import addressbook.applicationbeans.ICardContext;
 import addressbook.applicationbeans.vCardDataBean;
 import addressbook.corebeans.HomeAddress;
-import addressbook.corebeans.service.AbstractPersistanceService;
 import addressbook.corebeans.service.IHomeAddressService;
 
 /**
@@ -23,8 +22,7 @@ public class HomeAddressServiceImpl extends AbstractPersistanceService<HomeAddre
 	@Override
 	public boolean commit(HomeAddress entityToCommit) 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		return super.commit(entityToCommit);
 	}
 
 	/* (non-Javadoc)
@@ -33,8 +31,7 @@ public class HomeAddressServiceImpl extends AbstractPersistanceService<HomeAddre
 	@Override
 	public void delete(HomeAddress entityToDelete)
 	{
-		// TODO Auto-generated method stub
-
+		super.delete(entityToDelete);
 	}
 
 	/* (non-Javadoc)
@@ -43,8 +40,7 @@ public class HomeAddressServiceImpl extends AbstractPersistanceService<HomeAddre
 	@Override
 	public HomeAddress find(Object objToFind) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return super.find(objToFind);
 	}
 
 	/* (non-Javadoc)
@@ -53,8 +49,7 @@ public class HomeAddressServiceImpl extends AbstractPersistanceService<HomeAddre
 	@Override
 	public HomeAddress update(HomeAddress objToUpdate)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return super.update(objToUpdate);
 	}
 
 	/* (non-Javadoc)

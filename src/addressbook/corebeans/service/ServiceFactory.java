@@ -6,8 +6,11 @@ package addressbook.corebeans.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import addressbook.corebeans.serviceimpl.BusinessAddressImpl;
 import addressbook.corebeans.serviceimpl.ContactServiceImpl;
+import addressbook.corebeans.serviceimpl.HomeAddressServiceImpl;
 import addressbook.corebeans.serviceimpl.PersonServiceImpl;
+import addressbook.corebeans.serviceimpl.PersonalInformationImpl;
 import addressbook.corebeans.serviceimpl.UserServiceImpl;
 
 /**
@@ -16,32 +19,22 @@ import addressbook.corebeans.serviceimpl.UserServiceImpl;
  */
 public enum ServiceFactory 
 {
-	INSTANCE
-	{
-		
-	};
+	INSTANCE;
 	
 	private static final Map<Class<? extends IPersistanceService>,Object> serviceMap = new HashMap<Class<? extends IPersistanceService>,Object>()
 	{{
 		put(IPersonService.class, new PersonServiceImpl());
 		put(IContactService.class, new ContactServiceImpl());
 		put(IUserService.class, new UserServiceImpl());
-	}};
-	
-	private ServiceFactory()
-	{
+		put(IHomeAddressService.class, new HomeAddressServiceImpl());
+		put(IBusinessAddressService.class, new BusinessAddressImpl());
+		put(IPersonalInformationService.class, new PersonalInformationImpl());
 		
-	}
+	}};
 	
 	public <T> T getService(Class<?> clazz)
 	{
 		return (T) serviceMap.get(clazz);
 	}
 	
-	
-	public static void main(String[] args) 
-	{
-		IPersonService person = ServiceFactory.INSTANCE.getService(IPersonService.class);
-		System.out.println(person);
-	}
 }

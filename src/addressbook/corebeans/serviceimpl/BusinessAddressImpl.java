@@ -6,7 +6,6 @@ package addressbook.corebeans.serviceimpl;
 import addressbook.applicationbeans.ICardContext;
 import addressbook.applicationbeans.vCardDataBean;
 import addressbook.corebeans.BusinessAddress;
-import addressbook.corebeans.service.AbstractPersistanceService;
 import addressbook.corebeans.service.IBusinessAddressService;
 
 /**

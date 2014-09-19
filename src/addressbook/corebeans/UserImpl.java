@@ -35,21 +35,23 @@ public class UserImpl implements IUser
    private boolean isApplicationUser;
    private boolean isApplicationAdmin;
    
- 
+   
 
 	/**
-	 * @param userName
-	 * @param password
+	 * Parameterize consturctor.
+	 * 
+	 * @param userName as {@link String}.
+	 * @param password as {@link String}.
 	 */
 	public UserImpl(String userName, String password)
 	{
 		this.userName = userName;
 		this.password = new HashString(password);
-		identifier = UUID.fromString(userName);
+		identifier = UUID.nameUUIDFromBytes(userName.getBytes());
 	}
 
 	/**
-	 * @return the lastLoginDate
+	 * @return the lastLoginDate as {@link Date}
 	 */
 	public Date getLastLoginDate() 
 	{

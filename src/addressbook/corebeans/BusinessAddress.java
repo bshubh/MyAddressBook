@@ -3,20 +3,40 @@
  */
 package addressbook.corebeans;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
 /**
  * @author Shubhashish Bhowmik
  *
  */
+@Entity
+@Table(name = "BusinessAddress")
+@DiscriminatorValue(value = "BusinessAddress")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class BusinessAddress extends AbstractGenericAddress
 {
 
    /** Eclipse generated serialVersionUID */
    private static final long serialVersionUID = -7077813759345902533L;
 
-   private final String companyName;
+   @Column(name = "CompanyName")
+   private /*final*/ String companyName;
+   
+   @Column(name = "JobTitle")
    private String jobTitle;
+   
+   @Column(name = "Department")
    private String department;
+   
+   @Column(name ="Office")
    private String office;
+   
+   @Column(name = "WebpageURL")
    private String webPageURL;
    
    /**
@@ -98,12 +118,27 @@ public class BusinessAddress extends AbstractGenericAddress
    }
 
    /**
-    * @return the companyName
+    * @return the companyName as {@link String}
     */
    public String getCompanyName()
    {
       return companyName;
    }
-   
+
+	/**
+	 * @return the id as {@link Long}.
+	 */
+	public Long getId() 
+	{
+		return id;
+	}
+
+	/**
+	 * @param id the {@link Long} value to set.
+	 */
+	public void setId(Long id)
+	{
+		this.id = id;
+	} 
    
 }

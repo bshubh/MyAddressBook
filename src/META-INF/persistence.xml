@@ -25,41 +25,35 @@
     <persistence-unit name="MyAddressBook" transaction-type="RESOURCE_LOCAL">
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         
-        <class>addressbook.corebeans.Contact></class>
         <class>addressbook.corebeans.Person</class>
+        <class>addressbook.corebeans.EmailAddress</class>
+        <class>addressbook.corebeans.Contact</class>
         <class>addressbook.corebeans.User</class>
         <class>addressbook.corebeans.UserRole</class>
-        <class>addressbook.corebeans.EmailAddress</class>
         <class>addressbook.corebeans.HomeAddress</class>
         <class>addressbook.corebeans.BusinessAddress</class>
         <class>addressbook.corebeans.AbstractGenericAddress</class>
+        <class>addressbook.corebeans.PersonalInformation</class>
         
         <validation-mode>NONE</validation-mode>
         
         <properties>
-        <!-- Use these for MySQL
-            <property name="javax.persistence.jdbc.driver"   value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url"      value="jdbc:mysql://localhost/OpenBooks"/>
-            <property name="javax.persistence.jdbc.user"     value="user"/>
-            <property name="javax.persistence.jdbc.password" value="password"/>
-        -->
-            
-        <!-- Use these for derby -->
-            <property name="javax.persistence.jdbc.driver"   value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url"      value="jdbc:postgresql://localhost:5432/MyAddressBook;create=true"/>
-            <property name="javax.persistence.jdbc.user"     value="postgres"/>
-            <property name="javax.persistence.jdbc.password" value="postgres"/>
+        <!-- Use these for postgres -->
+            <property name="openjpa.ConnectionDriverName"   	value="org.postgresql.Driver"/>
+            <property name="openjpa.ConnectionURL"      		value="jdbc:postgresql://localhost:5432/MyAddressBook"/>
+            <property name="openjpa.ConnectionUserName"     	value="postgres"/>
+            <property name="openjpa.ConnectionPassword"			value="postgres"/>
 
 
             <property name="openjpa.DataCache"                value="true"/>        
             <property name="openjpa.RemoteCommitProvider"     value="sjvm"/>
-            <property name="openjpa.InitializeEagerly"        value="true"/>
-            
+                       
             <property name="openjpa.DynamicEnhancementAgent"  value="false"/>
             <property name="openjpa.RuntimeUnenhancedClasses" value="unsupported"/>
             
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
             <property name="openjpa.jdbc.QuerySQLCache"       value="true(EnableStatistics=true)"/>
+            <property name="openjpa.AutoDetach" 				value="close, commit, nontx-read"/>
             
         </properties>
     </persistence-unit>

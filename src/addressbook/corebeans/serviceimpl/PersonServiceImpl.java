@@ -6,7 +6,6 @@ package addressbook.corebeans.serviceimpl;
 import addressbook.applicationbeans.ICardContext;
 import addressbook.applicationbeans.vCardDataBean;
 import addressbook.corebeans.Person;
-import addressbook.corebeans.service.AbstractPersistanceService;
 import addressbook.corebeans.service.IPersonService;
 
 /**
@@ -62,6 +61,7 @@ public class PersonServiceImpl extends AbstractPersistanceService<Person> implem
 		final vCardDataBean dataBean = context.getDataBean();
 		final Person person = new Person(dataBean.getFirstName(), dataBean.getMiddleName(), dataBean.getLastName());
 		person.setNickName(dataBean.getNickName());
+		person.setEmailAddressList("sbhowmik@abc.zzz", true);
 		// XXX :: Add the email address over here.
 		return person;
 	}

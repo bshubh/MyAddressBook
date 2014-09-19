@@ -5,7 +5,6 @@ package addressbook.corebeans.serviceimpl;
 
 import addressbook.applicationbeans.ICardContext;
 import addressbook.corebeans.PersonalInformation;
-import addressbook.corebeans.service.AbstractPersistanceService;
 import addressbook.corebeans.service.IPersonalInformationService;
 
 /**

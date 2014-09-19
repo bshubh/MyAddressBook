@@ -4,19 +4,32 @@
 package addressbook.corebeans;
 
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
+ * This class will hold the personal information about a {@link Contact} or a {@link Person}.
+ * 
  * @author Shubhashish Bhowmik
  *
  */
+@Entity
+@Table( name = "PersonalInformation")
 public class PersonalInformation implements IEntity
 {
    /** Eclipse generated serialVersionUID. */
    private static final long serialVersionUID = -8764487899905405369L;
 
-   enum Gender
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long identifier;
+   
+   public enum Gender
    {
       MALE("Male"),
       FEMALE("Female");
@@ -34,11 +47,19 @@ public class PersonalInformation implements IEntity
       }
    }
    
+   @Column(name = "SpouseName")
    private String spouseName;
-   private List<String> children = new LinkedList<String>( );
    
+  /* @Column
+   private List<String> children = new LinkedList<String>( );*/
+   
+   @Column(name = "Gender")
    private Gender gender;
+   
+   @Column(name = "BirthDate")
    private Date birthDate;
+   
+   @Column(name = "AniversaryDate")
    private Date aniversaryDate;
    
    /**
@@ -55,24 +76,25 @@ public class PersonalInformation implements IEntity
    {
       this.spouseName = spouseName;
    }
+   
    /**
     * @return the children
-    */
+    *//*
    public List<String> getChildren()
    {
       return children;
    }
    
-   /**
+   *//**
     * @param children the children to set
-    */
+    *//*
    public void setChildren(String child)
    {
       if(! children.contains( child ))
       {
          children.add(child);
       }
-   }
+   }*/
    
    /**
     * @return the gender
@@ -129,4 +151,22 @@ public class PersonalInformation implements IEntity
    {
       this.aniversaryDate = aniversaryDate;
    }
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() 
+	{
+		return identifier;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) 
+	{
+		this.identifier = id;
+	}
+   
+   
 }

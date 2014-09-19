@@ -3,27 +3,59 @@
  */
 package addressbook.corebeans;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
 
 /**
+ * Abstract class to hold all the address parameters that are needed to make either {@link BusinessAddress} or {@link HomeAddress}.
+ * 
+ * Remove the <code>final</code> keyword, other JPA wont persists it.
+ * 
  * @author Shubhashish Bhowmik
  *
  */
+@MappedSuperclass
 public abstract class AbstractGenericAddress implements IEntity
 {
    
    /** Eclipse generated serialVersionUID */
    private static final long serialVersionUID = 6773809489731210856L;
    
-   protected final String streetAddress;
-   protected final String city;
-   protected final String stateProvince;
-   protected final String Country;
-   protected final String zipCode;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   protected Long id;
+   
+   @Column(name = "StreetAddress")
+   protected /*final*/ String streetAddress;
+   
+   @Column(name = "City")
+   protected /*final*/ String city;
+   
+   @Column(name = "State")
+   protected /*final*/ String stateProvince;
+   
+   @Column(name = "Country")
+   protected /*final */String Country;
+   
+   @Column(name = "Zipcode")
+   protected /*final*/ String zipCode;
+   
+   @Column(name = "Phonenumber")
    protected String phoneNumber;
+   
+   @Column(name = "faxnumber")
    protected String faxNumber;
+   
+   @Column(name = "Mobilenumber")
    protected String mobileNumber;
    
    /**
+    * Parameterize constructor for adding the address elements.
+    * 
     * @param streetAddress
     * @param city
     * @param stateProvince

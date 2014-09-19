@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="openjpa-all-2.3.0.jar" sourcepath="D:/Installers/Java-Related/apache-openjpa-2.3.0-source/openjpa-persistence/src/main/java/org/apache/openjpa/persistence"/>
+	<classpathentry kind="lib" path="openjpa-all-2.3.0.jar" sourcepath="D:/Installers/Java-Related/apache-openjpa-2.3.0-source/openjpa-kernel/src/main/java/org/apache/openjpa/kernel"/>
 	<classpathentry kind="lib" path="postgresql-9.3-1102.jdbc41.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="classes"/>

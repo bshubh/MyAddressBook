@@ -4,7 +4,6 @@
 package addressbook.corebeans.serviceimpl;
 
 import addressbook.corebeans.IUser;
-import addressbook.corebeans.service.AbstractPersistanceService;
 import addressbook.corebeans.service.IUserService;
 
 /**
