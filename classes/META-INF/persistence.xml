@@ -25,15 +25,16 @@
     <persistence-unit name="MyAddressBook" transaction-type="RESOURCE_LOCAL">
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         
-        <class>addressbook.corebeans.Person</class>
-        <class>addressbook.corebeans.EmailAddress</class>
-        <class>addressbook.corebeans.Contact</class>
-        <class>addressbook.corebeans.User</class>
-        <class>addressbook.corebeans.UserRole</class>
-        <class>addressbook.corebeans.HomeAddress</class>
-        <class>addressbook.corebeans.BusinessAddress</class>
-        <class>addressbook.corebeans.AbstractGenericAddress</class>
-        <class>addressbook.corebeans.PersonalInformation</class>
+        <class>addressbook.corebeans.application.Person</class>
+        <class>addressbook.corebeans.application.EmailAddress</class>
+        <class>addressbook.corebeans.application.Contact</class>
+        <class>addressbook.corebeans.application.HomeAddress</class>
+        <class>addressbook.corebeans.application.BusinessAddress</class>
+        <class>addressbook.corebeans.application.AbstractGenericAddress</class>
+        <class>addressbook.corebeans.application.PersonalInformation</class>
+        <class>addressbook.corebeans.security.CardUser</class>
+        <class>addressbook.corebeans.security.UserRole</class>
+        <class>addressbook.corebeans.customdatatype.HashString</class>
         
         <validation-mode>NONE</validation-mode>
         

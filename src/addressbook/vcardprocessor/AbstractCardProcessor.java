@@ -3,7 +3,7 @@
  */
 package addressbook.vcardprocessor;
 
-import addressbook.applicationbeans.ICardContext;
+import addressbook.appbeans.ICardContext;
 import addressbook.vcardprocessor.visitors.BeginnerAcceptor;
 import addressbook.vcardprocessor.visitors.EndAcceptor;
 import addressbook.vcardprocessor.visitors.HomeAddressAcceptor;

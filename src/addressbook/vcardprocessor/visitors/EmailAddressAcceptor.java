@@ -3,8 +3,8 @@
  */
 package addressbook.vcardprocessor.visitors;
 
-import addressbook.applicationbeans.CardContextImpl;
-import addressbook.applicationbeans.vCardDataBean;
+import addressbook.appbeans.CardContextImpl;
+import addressbook.appbeans.vCardDataBean;
 
 /**
  * @author Shubhashish Bhowmik

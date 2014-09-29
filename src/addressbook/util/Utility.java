@@ -3,6 +3,8 @@
  */
 package addressbook.util;
 
+import java.util.UUID;
+
 /**
  * @author Shubhashish Bhowmik
  *
@@ -31,4 +33,10 @@ public final class Utility
       }
       return object;
    }
+   
+   public static UUID getUUIDFromString(String forUUID)
+   {
+	   return UUID.nameUUIDFromBytes(forUUID.getBytes());
+   }
+   
 }

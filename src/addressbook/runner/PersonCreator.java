@@ -9,9 +9,9 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import addressbook.applicationbeans.ICardContext;
-import addressbook.applicationbeans.vCardDataBean;
-import addressbook.corebeans.Person;
+import addressbook.appbeans.ICardContext;
+import addressbook.appbeans.vCardDataBean;
+import addressbook.corebeans.application.Person;
 
 /**
  * @author Shubhashish Bhowmik

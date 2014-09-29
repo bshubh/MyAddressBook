@@ -3,8 +3,8 @@
  */
 package addressbook.vcardprocessor;
 
-import addressbook.applicationbeans.CardContextImpl;
-import addressbook.applicationbeans.ICardContext;
+import addressbook.appbeans.CardContextImpl;
+import addressbook.appbeans.ICardContext;
 
 /**
  * This interface will define the contract for creating card processor.

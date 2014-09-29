@@ -3,9 +3,9 @@
  */
 package addressbook.vcardprocessor.visitors;
 
-import addressbook.applicationbeans.CardContextImpl;
-import addressbook.applicationbeans.ICardContext;
-import addressbook.applicationbeans.vCardDataBean;
+import addressbook.appbeans.CardContextImpl;
+import addressbook.appbeans.ICardContext;
+import addressbook.appbeans.vCardDataBean;
 
 /**
  * @author Shubhashish Bhowmik

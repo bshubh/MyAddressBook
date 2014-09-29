@@ -3,8 +3,8 @@
  */
 package addressbook.vcardprocessor;
 
-import addressbook.applicationbeans.ICardContext;
-import addressbook.applicationbeans.vCardVersion;
+import addressbook.appbeans.ICardContext;
+import addressbook.appbeans.vCardVersion;
 
 /**
  * @author Shubhashish Bhowmik

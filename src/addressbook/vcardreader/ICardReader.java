@@ -5,7 +5,7 @@ package addressbook.vcardreader;
 
 import java.util.List;
 
-import addressbook.applicationbeans.ICardContext;
+import addressbook.appbeans.ICardContext;
 
 /**
  * @author Shubhashish Bhowmik

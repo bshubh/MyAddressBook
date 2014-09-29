@@ -10,9 +10,9 @@ import java.nio.channels.FileChannel;
 import java.util.LinkedList;
 import java.util.List;
 
-import addressbook.applicationbeans.CardContextImpl;
-import addressbook.applicationbeans.ICardContext;
-import addressbook.applicationbeans.vCardVersion;
+import addressbook.appbeans.CardContextImpl;
+import addressbook.appbeans.ICardContext;
+import addressbook.appbeans.vCardVersion;
 
 /**
  * This class is responsible for processing & reading the content from the vCard file.

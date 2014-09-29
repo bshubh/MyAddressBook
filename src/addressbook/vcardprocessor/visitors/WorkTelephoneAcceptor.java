@@ -3,9 +3,9 @@
  */
 package addressbook.vcardprocessor.visitors;
 
-import addressbook.applicationbeans.CardContextImpl;
-import addressbook.applicationbeans.ICardContext;
-import addressbook.applicationbeans.vCardDataBean;
+import addressbook.appbeans.CardContextImpl;
+import addressbook.appbeans.ICardContext;
+import addressbook.appbeans.vCardDataBean;
 
 /**
  * TODO :: Make arrangement for multiple phone numbers. Currently it supports only one.

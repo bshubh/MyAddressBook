@@ -1,6 +1,6 @@
 package addressbook.vcardreader;
 
-import addressbook.corebeans.Person;
+import addressbook.corebeans.application.Person;
 
 /**
  * Normal builder, not an immutable one to generate an Instance of {@link Person} class.

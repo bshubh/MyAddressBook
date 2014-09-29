@@ -3,8 +3,8 @@
  */
 package addressbook.vcardprocessor;
 
-import addressbook.applicationbeans.ICardContext;
-import addressbook.applicationbeans.vCardVersion;
+import addressbook.appbeans.ICardContext;
+import addressbook.appbeans.vCardVersion;
 import addressbook.vcardprocessor.visitors.BeginnerAcceptor;
 import addressbook.vcardprocessor.visitors.EndAcceptor;
 import addressbook.vcardprocessor.visitors.HomeAddressAcceptor;

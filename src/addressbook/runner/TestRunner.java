@@ -3,23 +3,9 @@
  */
 package addressbook.runner;
 
-import java.util.List;
-
-import addressbook.applicationbeans.ICardContext;
-import addressbook.corebeans.Contact;
-import addressbook.corebeans.Person;
-import addressbook.corebeans.service.IBusinessAddressService;
-import addressbook.corebeans.service.IContactService;
-import addressbook.corebeans.service.IHomeAddressService;
-import addressbook.corebeans.service.IPersonService;
-import addressbook.corebeans.service.IPersonalInformationService;
-import addressbook.corebeans.service.ServiceFactory;
-import addressbook.vcardprocessor.CardProcessorVersion2;
-import addressbook.vcardprocessor.CardProcessorVersion3;
-import addressbook.vcardprocessor.CardProcessorVersion4;
-import addressbook.vcardprocessor.IvCardProcessor;
-import addressbook.vcardreader.ICardReader;
-import addressbook.vcardreader.vCardReader;
+import addressbook.corebeans.interfaces.ICardUser;
+import addressbook.services.IUserService;
+import addressbook.services.ServiceFactory;
 
 /**
  * @author Shubhashish Bhowmik
@@ -28,6 +14,8 @@ import addressbook.vcardreader.vCardReader;
 public class TestRunner 
 {
 
+	
+	
 	/**
 	 * @param args
 	 */
@@ -35,15 +23,21 @@ public class TestRunner
 	{
 		try
 		{
-			final IvCardProcessor version4Processor = new CardProcessorVersion4(); // last processor, as of now. 
+			
+			//final IPersonService personService = (IPersonService) ServiceFactory.createInstance(IPersonService.class).createPersistenceService();
+			//final IHomeAddressService homeAddressService = ServiceFactory.createInstance(IHomeAddressService.class, HomeAddress.class).createPersistenceService();
+			//final IBusinessAddressService businessAddressService = ServiceFactory.createInstance(IBusinessAddressService.class, BusinessAddress.class).createPersistenceService();
+			//final IContactService contactService = ServiceFactory.createInstance(IContactService.class, Contact.class).createPersistenceService();
+			//final IPersonalInformationService personalInfoService = ServiceFactory.createInstance(IPersonalInformationService.class, PersonalInformation.class).createPersistenceService();
+			final IUserService userService = ServiceFactory.INSTANCE.getUserService();
+			
+			ICardUser adminUser = userService.createAppAdmin();
+			
+			System.out.println(adminUser.getIdentifier());
+			
+			/*final IvCardProcessor version4Processor = new CardProcessorVersion4(); // last processor, as of now. 
 			final IvCardProcessor version3Processor = new CardProcessorVersion3(version4Processor); // last processor, as of now. 
 			final IvCardProcessor version2Processor = new CardProcessorVersion2(version3Processor); // last processor, as of now.
-			
-			final IPersonService personService = ServiceFactory.INSTANCE.getService(IPersonService.class);
-			final IHomeAddressService homeAddressService = ServiceFactory.INSTANCE.getService(IHomeAddressService.class);
-			final IBusinessAddressService businessAddressService = ServiceFactory.INSTANCE.getService(IBusinessAddressService.class);
-			final IContactService contactService = ServiceFactory.INSTANCE.getService(IContactService.class);
-			final IPersonalInformationService personalInfoService = ServiceFactory.INSTANCE.getService(IPersonalInformationService.class);
 			
 			final ICardReader reader = new vCardReader("PIM00005.vcf");
 			final List<ICardContext> cardDataList = reader.readCardData();
@@ -58,7 +52,7 @@ public class TestRunner
 				contact.setPersonalInformation(personalInfoService.createPersonalInformation(cardContext));
 				contactService.commit(contact);
 				System.out.println(person);
-			}
+			}*/
 			
 			
 		}
@@ -67,6 +61,11 @@ public class TestRunner
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	static void runSampleCardTest()
+	{
+		
 	}
 
 }
